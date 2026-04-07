@@ -1,0 +1,149 @@
+body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;   /* вместо min-height: 100% */
+    margin: 0;
+}
+
+.row.stretch-childs {
+    margin-top: 2rem;
+}
+
+.card.stretch-childs {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /*Заставляем карточку растягиваться на всю высоту колонки */
+}
+
+/* Зачем, зачем ты, chota, делаешь последний элемент контейнера всегда без отступа????? */
+.card .card-footer:last-child {
+    margin-top: auto;
+}
+
+div.btn-after-card {
+    margin-top: 3rem;
+}
+
+/* Основные цвета для карточек */
+/* увы, 3 разных цвета не смотрятся
+.card-linters, .button-linters { background-color: rgba(59, 130, 246, 0.15); }     
+.card-formatters, .button-formatters { background-color: rgba(20, 184, 166, 0.15); }   
+.card-validators, .button-validators { background-color: rgba(16, 185, 129, 0.15); } 
+*/
+
+/* Дизайним карточки чтобы не было скучно */
+.cards-all::before {
+    content: '';
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: var(--color-primary);
+}
+
+.main-content {
+    padding-left: 3rem;   /* стандартный отступ Chota — 1rem, можно увеличить */
+    padding-right: 3rem;
+}
+
+@media (min-width: 1200px) {
+    .main-content {
+        padding-left: 5rem;
+        padding-right: 5rem;
+    }
+}
+
+@media (min-width: 1400px) {
+    .main-content {
+        padding-left: 8rem;
+        padding-right: 8rem;
+    }
+}
+
+.nav {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+
+
+/*////////////////// Стили footer /////////////////*/
+
+footer {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
+
+/* Border-ы для footer и hooter */
+/* Да что с тобой не так, chota, неужели я не могу напрямую указать border для шапки?????? */
+/* Chota не виноват!!! */
+.bordered-top {
+    border-top: 0.2rem solid var(--color-darkGrey);
+}
+
+.bordered-bottom {
+    border-bottom: 0.2rem solid var(--color-darkGrey);
+}
+
+.rights {
+    gap: 0.2rem;   /* Небольшой отступ между ячейками */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-start; */  /* строки прижаты к верху */
+    align-items: center;
+
+}
+
+.rights p {
+    margin-bottom: 0;   /* убираем нижний отступ у p */
+}
+.rights p.currentYear {
+    margin-top: 1rem
+}
+
+.footer-links-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-start; */  /* строки прижаты к верху */
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-links-container a{
+    margin-top: 0.8rem;
+}
+
+.theme-switcher {
+    display: flex;
+    gap: 0.2rem;   /* Небольшой отступ между ячейками */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-switcher > span:first-child {
+    margin-top: 0.8rem;
+}
+
+/* ///////////////////// Тёмный режим /////////////////// */
+
+body.dark {
+      --bg-color: #25232b; /* был #000, но это перебор  */
+      --bg-secondary-color: #131316;
+      --font-color: #f5f5f5;
+      --color-grey: #ccc;
+      --color-darkGrey: #777;
+    }
+
+.theme-icons {
+    display: flex;
+    gap: 0.3rem;
+}
+.theme-icon-sun, .theme-icon-moon {
+    transition: opacity 0.2s;
+}
+body.dark .theme-icon-sun { opacity: 0.3; }
+body:not(.dark) .theme-icon-moon { opacity: 0.3; }
+
+/* ////////////////////////////////////////////////////////////// */
+
