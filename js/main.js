@@ -116,8 +116,8 @@ async function loadComponent(elementId, filePath, ...callbacks) {
 
 // Подгружаем шапку и подвал после полной загрузки DOM
 document.addEventListener('DOMContentLoaded', () => {
-    loadComponent('header-placeholder', 'components/header.html');
-    loadComponent('footer-placeholder', 'components/footer.html', updateYear, initThemeSwitcher);
+    loadComponent('header-placeholder', '/components/header.html');
+    loadComponent('footer-placeholder', '/components/footer.html', updateYear, initThemeSwitcher);
 });
 
 
