@@ -173,6 +173,68 @@ body:not(.dark) .theme-icon-moon { opacity: 0.3; }
     padding-top: 1rem;
 }
 
+h3 {
+    padding-top: 1rem;
+    margin-left: 0rem;
+}
+
+section {
+    padding-top: 1rem;
+}
+
+li {
+    padding-top: 0.3rem;
+}
+
+
+/* Сделаем подпись к картинке адаптивной, потому что 0.85 это очень мало на 4к */
+.img-caption {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #6c757d;
+    padding-bottom: 1.2rem;
+}
+
+/* Для планшетов и небольших десктопов */
+@media (min-width: 500px) {
+    .img-caption {
+        font-size: 1rem;
+    }
+}
+
+/* Для планшетов и небольших десктопов */
+@media (min-width: 700px) {
+    .img-caption {
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width: 850px) {
+    .img-caption {
+        font-size: 1.2rem;
+    }
+}
+
+
+/* Для больших экранов (Full HD и выше) */
+@media (min-width: 1000px) {
+    .img-caption {
+        font-size: 1.3rem;
+    }
+}
+
+/* Для 4K и очень широких экранов */
+@media (min-width: 1120px) {
+    .img-caption {
+        font-size: 1.4rem;
+    }
+}
+
+table {
+    margin-bottom: 2rem;
+}
+
+
 /* Сделаем третью кнопку, ведущую в практику */
 .button-vertical {
     Display: inline-flex;
