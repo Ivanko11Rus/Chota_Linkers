@@ -147,3 +147,42 @@ body:not(.dark) .theme-icon-moon { opacity: 0.3; }
 
 /* ////////////////////////////////////////////////////////////// */
 
+/* ////////////// Вёрстка основного текста страницы ////////////////// */
+
+/* Разделим основной текст и краткое описание */
+.description {
+    text-align: center;   /* центрируем содержимое */
+    padding-bottom: 2rem;
+    position: relative;
+}
+
+/* Заняли псевдоэлемент ::after, который отображается после основного содержимого header, для отображение полоски шириной в 80% и высотой в 0.2rem */
+.description::after {
+    content: ''; /* Без этого элемент не будет отображаться */
+    position: absolute; /* сделали у header position: relative, чтобы этот position:absolute, работал относительно header-а, а не всей страницы. */
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;  /* разместили элемент-полоску ровно по центру relative элемента (left, transform) и в самом низу (bottom), при этом сделав интересующую ширину - 80%. */
+    height: 0.2rem;
+    background-color: var(--color-darkGrey);
+    border-radius: 2px;
+}
+
+.main-text {
+    padding-top: 1rem;
+}
+
+/* Сделаем третью кнопку, ведущую в практику */
+.button-vertical {
+    Display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;  /* отступ между текстом и стрелкой */
+    text-decoration: none;
+}
+
+.button-arrow {
+    font-size: 1.2em; /* чуть крупнее, если нужно */
+    line-height: 1;
+}
