@@ -147,3 +147,104 @@ body:not(.dark) .theme-icon-moon { opacity: 0.3; }
 
 /* ////////////////////////////////////////////////////////////// */
 
+/* ////////////// Вёрстка основного текста страницы ////////////////// */
+
+/* Разделим основной текст и краткое описание */
+.description {
+    text-align: center;   /* центрируем содержимое */
+    padding-bottom: 2rem;
+    position: relative;
+}
+
+/* Заняли псевдоэлемент ::after, который отображается после основного содержимого header, для отображение полоски шириной в 80% и высотой в 0.2rem */
+.description::after {
+    content: ''; /* Без этого элемент не будет отображаться */
+    position: absolute; /* сделали у header position: relative, чтобы этот position:absolute, работал относительно header-а, а не всей страницы. */
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;  /* разместили элемент-полоску ровно по центру relative элемента (left, transform) и в самом низу (bottom), при этом сделав интересующую ширину - 80%. */
+    height: 0.2rem;
+    background-color: var(--color-darkGrey);
+    border-radius: 2px;
+}
+
+.main-text {
+    padding-top: 1rem;
+}
+
+h3 {
+    padding-top: 1rem;
+    margin-left: 0rem;
+}
+
+section {
+    padding-top: 1rem;
+}
+
+li {
+    padding-top: 0.3rem;
+}
+
+
+/* Сделаем подпись к картинке адаптивной, потому что 0.85 это очень мало на 4к */
+.img-caption {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #6c757d;
+    padding-bottom: 1.2rem;
+}
+
+/* Для планшетов и небольших десктопов */
+@media (min-width: 500px) {
+    .img-caption {
+        font-size: 1rem;
+    }
+}
+
+/* Для планшетов и небольших десктопов */
+@media (min-width: 700px) {
+    .img-caption {
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width: 850px) {
+    .img-caption {
+        font-size: 1.2rem;
+    }
+}
+
+
+/* Для больших экранов (Full HD и выше) */
+@media (min-width: 1000px) {
+    .img-caption {
+        font-size: 1.3rem;
+    }
+}
+
+/* Для 4K и очень широких экранов */
+@media (min-width: 1120px) {
+    .img-caption {
+        font-size: 1.4rem;
+    }
+}
+
+table {
+    margin-bottom: 2rem;
+}
+
+
+/* Сделаем третью кнопку, ведущую в практику */
+.button-vertical {
+    Display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;  /* отступ между текстом и стрелкой */
+    text-decoration: none;
+}
+
+.button-arrow {
+    font-size: 1.2em; /* чуть крупнее, если нужно */
+    line-height: 1;
+}
