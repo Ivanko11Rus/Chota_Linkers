@@ -95,7 +95,7 @@ function initThemeSwitcher() {
 
 
 
-
+/*
 // Функция загрузки html компонентов с поддержкой нескольких callbacks
 async function loadComponent(elementId, filePath, ...callbacks) {
     const element = document.getElementById(elementId);
@@ -110,6 +110,37 @@ async function loadComponent(elementId, filePath, ...callbacks) {
         element.innerHTML = html;
         // Вызываем все переданные колбэки
         callbacks.forEach(callback => callback && callback()); // ← проверяем, существует ли callback, и если существует - вызываем. 
+        // Функция проходит по массиву callbacks (в котором лежат все переданные функции) и для каждой функции cb проверяет: если cb существует, то вызывает её — cb. cb && cb() значит то же, что и  if (cb) { cb(); }
+    } catch (error) {
+        console.error(`Ошибка загрузки ${filePath}:`, error); //вообще, у меня не работало потому что это надо было проделывать с использованием live server, возможно ошибка повторится.
+        element.innerHTML = `<p style="color: red;">Не удалось загрузить компонент (${filePath}). Проверьте консоль.</p>`;
+    }
+}
+*/
+
+// Функция загрузки html компонентов с поддержкой нескольких callbacks
+async function loadComponent(elementId, filePath, ...callbacks) {
+    const element = document.getElementById(elementId);
+    if (!element) {
+        console.error(`Элемент с id "${elementId}" не найден`);
+        return;
+    }
+    try {
+        const response = await fetch(filePath);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        let html = await response.text();
+        
+        // Для компонентов шапки и подвала заменяем абсолютные пути на относительные с rootPath
+        if (filePath.includes('header.html') || filePath.includes('footer.html')) {
+            // Заменяем src="/assets/... на src="..?/assets/...
+            html = html.replace(/src="\/assets\//g, `src="${rootPath}/assets/`);
+            // Аналогично для href, если есть ссылки на стили внутри компонента
+            html = html.replace(/href="\/css\//g, `href="${rootPath}/css/`);
+        }
+        
+        element.innerHTML = html;
+        // Вызываем все переданные колбэки
+        callbacks.forEach(callback => callback && callback());// ← проверяем, существует ли callback, и если существует - вызываем. 
         // Функция проходит по массиву callbacks (в котором лежат все переданные функции) и для каждой функции cb проверяет: если cb существует, то вызывает её — cb. cb && cb() значит то же, что и  if (cb) { cb(); }
     } catch (error) {
         console.error(`Ошибка загрузки ${filePath}:`, error); //вообще, у меня не работало потому что это надо было проделывать с использованием live server, возможно ошибка повторится.
