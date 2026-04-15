@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Страница практики: Применение линтеров, форматтеров, валидаторов на практике!">
     <link rel="stylesheet" href="../css/chota.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/bg-side-primary-color-cogs.css">
@@ -13,7 +14,7 @@
 
     <main class="container main-content" style="margin-bottom: 2rem;">
         <div class="container">
-            
+
             <div class="row">
                 <div class="description">
                     <div class="col text-center">
@@ -33,12 +34,117 @@
                         эффективные конструкции, такие как использование картинок не в figure + figcaption, а в img + div. Есть пересечения .css стилей (это не специально, это от неопытности). Есть загруженные в html, но скрытые и неиспользуемые кнопки. </p>
                     </section>
 
+                    <section>
+                        <h2 class="text-center"> Замеры стартовой страницы в режиме desktop</h2>
+                        <p> 
+                            <div style="text-align: center; margin-top: 2rem;">
+                                <img src="../assets/Tests/Practice_1_1_desktop.png" alt="Тест Lighthouse стартовой страницы в режиме desktop" style="padding-top: 0rem; max-width: 80%; height: auto"> 
+                                <div class="img-caption"> Очень неплохо </div>
+                            </div>
+                            Знаете, я ожидал худшего. Через 3 точки отчёт был сохранён как json, и отдан на растерзание нейронной сети, потому что документ невероятно большой, самому всё это анализировать можно очень долго.
+                            Оценки хорошие, даже наверное очень, но есть ряд вещей, которые могут улучшить сайт.
+                        
 
+                            <h3>Отсутствие HTTPS.</h3>
+                            Это основная причина, по которой балл за лучшие практики столь занижен. Проблема уйдёт сама собой, когда сайт будет загружен на github pages, так как он может обеспечить https, сейчас же сайт работает локально.
+
+                            <h3>Отсутствие тега <code>main</code></h3>
+                            Отсутствие тега main усложняет работу скринридеров. Причём, main не был использован только на домашней странице, на остальных страницах он есть. В любом случае, будет исправлено.
+
+                            <h3>Отсутствие заголовков безопасности</h3>
+                            Проблема частично уйдёт, когда сайт будет помещён на github pages. Тем не менее, придётся несколько понастраивать политику сайта и скрипты. Даже не знал, что такое бывает.
+
+                            <h3>Отсутствие тега <code>meta</code> с <code>name="description"</code></h3>
+                            Нейронная сеть даже предложила свой вариант готового кода для этого пункта, на основании того, что прочла о сайте в json. Не пренебрежём этим воспользоваться :)
+
+                            <h3> Замечания </h3>
+                            <ul>
+                                <li> <b>Минимизация .css, .js, .html, а также убирание комментариев и неиспользуемых блоков кода может освободить не менее 150 кб.</b> Ничоси, это-то на такой маленьком сайте! </li>
+                                <li> <b>Рендер-блокирующие ресурсы.</b> Как я понимаю, это либо работа расширений браузера, либо особенность chota. Не критично. </li>
+                                <li> <b>Отсутствие кэширования.</b> Можно настроить в github pages</li>
+                            </ul>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-center"> Замеры стартовой страницы в режиме mobile</h2>
+                        <p> 
+                            <div style="text-align: center; margin-top: 2rem;">
+                                <img src="../assets/Tests/Practice_1_2_mobile.png" alt="Тест Lighthouse стартовой страницы в режиме mobile" style="padding-top: 0rem; max-width: 80%; height: auto"> 
+                                <div class="img-caption"> А вот тут уже не так радужно, возможно это получится списать на разработку desktop-first... </div>
+                            </div>
+                            
+                            Впрочем, нейронная сеть обнадёжила. Это нормально, если изначально сайт разрабатывается под desktop-first. И даже так, показатели хорошие. Основные ошибки те же, что были указаны ранее. Единственное, сейчас
+                            вы видите 100% по двум показателям - это вина разработчика: он сначала исправил ошибки (за исключением публикации на github), а затем провёл аудит в Lighthouse. А вот длительная первая загрузка - 2 с копейкой секунды,
+                            повлияла на показатель доступности. Если хочется улучшить сайт, надо минимизировать js и css. И возможно, уменьшать картинки, потому что они изначально подготовлены для ПК версии. 
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-center"> Замеры последующих страниц</h2>
+                        <p> 
+                            <div style="text-align: center; margin-top: 2rem;">
+                                <img src="../assets/Tests/Practice_2_1_desktop.png" alt="Тест Lighthouse страницы линтеров в режиме desktop" style="padding-top: 0rem; max-width: 80%; height: auto"> 
+                                <div class="img-caption"> Линтеры в desktop. Новые замечания :) </div>
+                            </div>
+                            
+                            Основная ошибка - недостаточно контрастный background (к сожалению, если сделать его контрастнее, он будет перетягивать на себя внимание с основного текста, так что менять его я не буду), а также красный цвет на сером фоне. 
+                            Это камень в огород Chota, потому что именно он отвечал за стиль тега <code>code</code>. Вновь забытый meta с описанием. Исправим сразу на всех страницах это недоразумение. Ну, и ужатие картинок с css и js, да отсутствие https.
+
+                            <div style="text-align: center; margin-top: 2rem;">
+                                <img src="../assets/Tests/Practice_2_2_mobile.png" alt="Тест Lighthouse страницы линтеров в режиме mobile" style="padding-top: 0rem; max-width: 80%; height: auto"> 
+                                <div class="img-caption"> Линтеры в mobile </div>
+                            </div>
+
+                            Теперь, оказывается, нужно указывать конкретные width и height изображениям. Также неприятен пропуск h2 (написание после h1 сразу h3). Мне так больше понравилось, но менять Chota не хотелось. Запишем камень в огород Chota))) 
+                            Больше новых ошибок нет - https, контрастность, сожми 200 КБ – давай, да, сжимай их!
+
+                            <div style="text-align: center; margin-top: 2rem;">
+                                <img src="../assets/Tests/Practice_3_1_desktop.png" alt="Тест Lighthouse страницы форматтеров в режиме desktop" style="padding-top: 0rem; max-width: 80%; height: auto"> 
+                                <div class="img-caption"> Форматтеры в desktop </div>
+                            </div>
+
+                            Новых ошибок нет. В мобильном тесте баллы не отличаются от других страниц. Вот она, сила шаблонов! 
+                            <br><br>
+                            Хотя вот что было замечено - сайт не проверяет страницу в тёмной теме. На скриншотах Lighthouse нет таких вариантов. Ради интереса, сделаем замер только этой странице, чтобы страница практики не превратилась
+                            в томик Достоевского.
+
+                            <div style="text-align: center; margin-top: 2rem;">
+                                <img src="../assets/Tests/Practice_3_3_desktop.png" alt="Тест Lighthouse страницы форматтеров в режиме desktop в тёмной теме" style="padding-top: 0rem; max-width: 80%; height: auto"> 
+                                <div class="img-caption"> Форматтеры в desktop в тёмной теме </div>
+                            </div>
+
+                            Новых ошибок нет, но есть пояснения к результатам:
+                            <ul>
+                                <li>У картинки linters_n-bad-code-win.webp не заданы размеры, что вызывает смещение макета (CLS 0.05), 0.5 баллов вместо 1</li>
+                                <li>Ответ сервера не сжат, 11 кб возникли на ровном месте, 0.5 балла вместо 1.</li>
+                                <li>Длинная цепочка сетевых запросов (network-dependency-tree-insight), загружаемые css и js подтягивают ещё какие-то файлы. Что-то я не помню, чтобы я там что-то такое делал, так что камень chot-е. 0 баллов вместо 1.</li>
+                            </ul>
+                            В общем, есть что поизучать. 
+
+                            <div style="text-align: center; margin-top: 2rem;">
+                                <img src="../assets/Tests/Practice_3_4_mobile.png" alt="Тест Lighthouse страницы форматтеров в режиме mobile в тёмной теме" style="padding-top: 0rem; max-width: 80%; height: auto"> 
+                                <div class="img-caption"> Форматтеры в mobile в тёмной теме. Новых ошибок нет. Но снова развёрнутый ответ, почему в светлой теме было не так???</div>
+                            </div>
+
+                            Страница валидаторов дала точно такие же результаты. Перейдём к самому крупному исправляющему шагу: загрузим на GitHub Pages и насладимся жизнью.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-center"> Загрузка на GitHub</h2>
+                        <p> 
+                            <!--  
+                            <div style="text-align: center; margin-top: 2rem;">
+                                <img src="../assets/Tests/Practice_1_2_mobile.png" alt="Тест Lighthouse стартовой страницы в режиме mobile" style="padding-top: 0rem; max-width: 80%; height: auto"> 
+                                <div class="img-caption"> А вот тут уже не так радужно, возможно это получится списать на разработку desktop-first... </div>
+                            </div>
+                            -->     
+                        </p>
+                    </section>
+                    
                 </div>
             </div>
-
-            
-
         </div> 
 
         
@@ -47,13 +153,9 @@
             <div class="col text-center">
                 <a href="../index.html" class="button primary">← На главную 🏠</a>
             </div>
-            <div class="col text-center is-hidden">
-                <a href="#" class="button primary">Что-то ещё→</a>
-            </div>
         </div>
     </main>
         
-    </div>
     
     <div id="footer-placeholder"></div>
     <script src="../js/main.js"></script>
