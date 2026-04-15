@@ -132,12 +132,9 @@ async function loadComponent(elementId, filePath, ...callbacks) {
         
         // Для компонентов шапки и подвала заменяем абсолютные пути на относительные с rootPath
         if (filePath.includes('header.html') || filePath.includes('footer.html')) {
-            // Заменяем src="/assets/... на src="rootPath/assets/...
-            html = html.replace(/src="\/assets\//g, `src="${rootPath}/assets/`);
             // Заменяем src="assets/... (без слеша) на src="rootPath/assets/...
             html = html.replace(/src="assets\//g, `src="${rootPath}/assets/`);
             // Аналогично для href, если есть ссылки на стили внутри компонента
-            html = html.replace(/href="\/css\//g, `href="${rootPath}/css/`);
             html = html.replace(/href="css\//g, `href="${rootPath}/css/`);
         }
         
