@@ -50,6 +50,9 @@ function initThemeSwitcher() {
 
 */
 
+// Определяем корень сайта (устанавливается в HTML перед подключением скрипта). Github, привет!
+const rootPath = window.rootPath || '.';
+
 
 // ========== Управление темой ==========
 // Функция для установки темы через toggle
@@ -116,8 +119,8 @@ async function loadComponent(elementId, filePath, ...callbacks) {
 
 // Подгружаем шапку и подвал после полной загрузки DOM
 document.addEventListener('DOMContentLoaded', () => {
-    loadComponent('header-placeholder', 'components/header.html');
-    loadComponent('footer-placeholder', 'components/footer.html', updateYear, initThemeSwitcher);
+    loadComponent('header-placeholder', `${rootPath}/components/header.html`);
+    loadComponent('footer-placeholder', `${rootPath}/components/footer.html`, updateYear, initThemeSwitcher);
 });
 
 
