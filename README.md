@@ -33,7 +33,7 @@
 **Скриншоты реальных тестов** — на странице «Практика» вы увидите, как Lighthouse оценивал сайт до и после исправлений, включая тесты в тёмной теме.
 
 ## 📊 Результаты Lighthouse (после всех доработок)
-**Desktop:** 99–100 | **Mobile:** 85–86.
+**Desktop:** 99–100 | **Mobile:** 86–87.
 
 Оценки на мобильных устройствах чуть ниже из‑за неадаптированных изображений и расширений браузера при тестировании. При реальном использовании на телефоне показатели выше.
 Все недочёты довольно быстро исправляются при желании, домашнему же проекту этого достаточно. (разработчик устал, не бейте.)
@@ -51,7 +51,6 @@
 
 ## Сделано с ☕, иронией и любовью к чистому коду (верим на слово).
 — Ivanko11Rus
-
 
 
 <br><br><br>
@@ -90,7 +89,7 @@ The site is fully responsive, supports dark mode, and the header/footer are load
 **Real test screenshots** — on the "Practice" page, you’ll see how Lighthouse evaluated the site before and after fixes, including tests in dark mode.
 
 ## 📊 Lighthouse Results (after all improvements)
-**Desktop:** 99–100 | **Mobile:** 85–86.
+**Desktop:** 99–100 | **Mobile:** 86–87.
 
 Mobile scores are slightly lower due to non‑responsive images and browser extensions during testing. In real usage on a phone, the scores are higher.
 All issues can be fixed fairly quickly if desired, but for a hobby project this is enough (the developer is tired, don’t hit him).
